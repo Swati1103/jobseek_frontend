@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { GiHamburgerMenu } from "react-icons/gi";
+const API = import.meta.env.VITE_APP_URI_API;
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
@@ -13,7 +14,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       const response = await axios.get(
-        "https://jobseek-codewizardswati.onrender.com/api/v1/user/logout",
+        `${API}/api/v1/user/logout`,
         {
           withCredentials: true,
         }

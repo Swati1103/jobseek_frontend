@@ -5,6 +5,7 @@ import { FaCheck } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import { Context } from "../../main";
 import { useNavigate } from "react-router-dom";
+const API = import.meta.env.VITE_APP_URI_API;
 
 const MyJobs = () => {
   const [myJobs, setMyJobs] = useState([]);
@@ -17,7 +18,7 @@ const MyJobs = () => {
     const fetchJobs = async () => {
       try {
         const { data } = await axios.get(
-          "https://jobseek-codewizardswati.onrender.com/api/v1/job/getmyjobs",
+          `${API}/api/v1/job/getmyjobs`,
           { withCredentials: true }
         );
         setMyJobs(data.myJobs);
@@ -47,7 +48,7 @@ const MyJobs = () => {
   const handleUpdateJob = async (jobId) => {
     const updatedJob = myJobs.find((job) => job._id === jobId);
     await axios
-      .put(`https://jobseek-codewizardswati.onrender.com/api/v1/job/update/${jobId}`, updatedJob, {
+      .put(`${API}/api/v1/job/update/${jobId}`, updatedJob, {
         withCredentials: true,
       })
       .then((res) => {
@@ -62,7 +63,7 @@ const MyJobs = () => {
   //Function For Deleting Job
   const handleDeleteJob = async (jobId) => {
     await axios
-      .delete(`https://jobseek-codewizardswati.onrender.com/api/v1/job/delete/${jobId}`, {
+      .delete(`${API}/api/v1/job/delete/${jobId}`, {
         withCredentials: true,
       })
       .then((res) => {

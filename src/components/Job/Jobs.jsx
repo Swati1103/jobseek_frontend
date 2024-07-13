@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../../main";
+const API = import.meta.env.VITE_APP_URI_API;
 
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -10,7 +11,7 @@ const Jobs = () => {
   useEffect(() => {
     try {
       axios
-        .get("https://jobseek-codewizardswati.onrender.com/api/v1/job/getall", {
+        .get(`${API}/api/v1/job/getall`, {
           withCredentials: true,
         })
         .then((res) => {

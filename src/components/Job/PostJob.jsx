@@ -3,6 +3,8 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../main";
+const API = import.meta.env.VITE_APP_URI_API;
+
 const PostJob = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -31,7 +33,7 @@ const PostJob = () => {
     }
     await axios
       .post(
-        "https://jobseek-codewizardswati.onrender.com/api/v1/job/post",
+        `${API}/api/v1/job/post`,
         fixedSalary.length >= 4
           ? {
               title,

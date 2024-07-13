@@ -8,6 +8,7 @@ import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Context } from "../../main";
+const API = import.meta.env.VITE_APP_URI_API;
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -22,7 +23,7 @@ const Register = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "https://jobseek-codewizardswati.onrender.com/api/v1/user/register",
+        `${API}/api/v1/user/register`,
         { name, phone, email, role, password },
         {
           headers: {
@@ -43,10 +44,9 @@ const Register = () => {
     }
   };
 
-  if(isAuthorized){
-    return <Navigate to={'/'}/>
+  if (isAuthorized) {
+    return <Navigate to={"/"} />;
   }
-
 
   return (
     <>

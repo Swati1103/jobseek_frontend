@@ -16,6 +16,7 @@ import MyApplications from "./components/Application/MyApplications";
 import PostJob from "./components/Job/PostJob";
 import NotFound from "./components/NotFound/NotFound";
 import MyJobs from "./components/Job/MyJobs";
+const API = import.meta.env.VITE_APP_URI_API;
 
 const App = () => {
   const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
@@ -23,7 +24,7 @@ const App = () => {
     const fetchUser = async () => {
       try {
         const response = await axios.get(
-          "https://jobseek-codewizardswati.onrender.com/api/v1/user/getuser",
+          `${API}/api/v1/user/getuser`,
           {
             withCredentials: true,
           }

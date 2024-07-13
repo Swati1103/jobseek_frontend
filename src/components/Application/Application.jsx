@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import { Context } from "../../main";
+
 const Application = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -32,10 +33,11 @@ const Application = () => {
     formData.append("coverLetter", coverLetter);
     formData.append("resume", resume);
     formData.append("jobId", id);
+    const API = import.meta.env.VITE_APP_URI_API;
 
     try {
       const { data } = await axios.post(
-        "https://jobseek-codewizardswati.onrender.com/api/v1/application/post",
+        `${API}/api/v1/application/post`,
         formData,
         {
           withCredentials: true,

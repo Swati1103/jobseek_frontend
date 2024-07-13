@@ -4,6 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import ResumeModal from "./ResumeModal";
+const API = import.meta.env.VITE_APP_URI_API;
 
 const MyApplications = () => {
   const { user } = useContext(Context);
@@ -18,7 +19,7 @@ const MyApplications = () => {
     try {
       if (user && user.role === "Employer") {
         axios
-          .get("https://jobseek-codewizardswati.onrender.com/api/v1/application/employer/getall", {
+          .get(`${API}/api/v1/application/employer/getall`, {
             withCredentials: true,
           })
           .then((res) => {
@@ -26,7 +27,7 @@ const MyApplications = () => {
           });
       } else {
         axios
-          .get("https://jobseek-codewizardswati.onrender.com/api/v1/application/jobseeker/getall", {
+          .get(`${API}/api/v1/application/jobseeker/getall`, {
             withCredentials: true,
           })
           .then((res) => {
@@ -45,7 +46,7 @@ const MyApplications = () => {
   const deleteApplication = (id) => {
     try {
       axios
-        .delete(`https://jobseek-codewizardswati.onrender.com/api/v1/application/delete/${id}`, {
+        .delete(`${API}/api/v1/application/delete/${id}`, {
           withCredentials: true,
         })
         .then((res) => {

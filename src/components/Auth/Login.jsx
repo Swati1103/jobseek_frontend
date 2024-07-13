@@ -6,11 +6,14 @@ import { FaRegUser } from "react-icons/fa";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Context } from "../../main";
+const API = import.meta.env.VITE_APP_URI_API;
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
+
+  console.log(API);
 
   const { isAuthorized, setIsAuthorized } = useContext(Context);
 
@@ -18,7 +21,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "https://jobseek-codewizardswati.onrender.com/api/v1/user/login",
+        `${API}/api/v1/user/login`,
         { email, password, role },
         {
           headers: {
@@ -37,8 +40,8 @@ const Login = () => {
     }
   };
 
-  if(isAuthorized){
-    return <Navigate to={'/'}/>
+  if (isAuthorized) {
+    return <Navigate to={"/"} />;
   }
 
   return (
